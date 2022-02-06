@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+
+@font-face {
+	font-family: HyliaSerif;
+	src: url("./fonts/HyliaSerifBeta-Regular.otf") format("opentype");
+}
+
+body {
+	font-family: "Open Sans";
+	background: #0d1117;
+	color: #949da7;
+}
+
+h1 {
+	font-family: HyliaSerif;
+	letter-spacing: 4px;
+}
+
+.svg {
+	filter: invert(57%) sepia(1%) saturate(1913%) hue-rotate(173deg)
+		brightness(106%) contrast(101%);
+	height: 1em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+#app {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	margin-top: 60px;
+}
