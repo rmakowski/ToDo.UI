@@ -7,13 +7,18 @@
 		</h1>
 	</header>
 	<div class="row">
-		<div class="col-4">
+		<div class="add-button">
+			<button type="button" class="btn btn-outline-secondary btn-lg">
+				Add
+			</button>
+		</div>
+		<div class="col-sm-12 col-md-4 col-lg-4">
 			<to-do-items :toDoItems="toDoList" :order="order" :priority="1" />
 		</div>
-		<div class="col-4">
+		<div class="col-sm-12 col-md-4 col-lg-4">
 			<to-do-items :toDoItems="toDoList" :order="order" :priority="2" />
 		</div>
-		<div class="col-4">
+		<div class="col-sm-12 col-md-4 col-lg-4">
 			<to-do-items :toDoItems="toDoList" :order="order" :priority="3" />
 		</div>
 	</div>
@@ -38,7 +43,7 @@ export default defineComponent({
 				name: "1 item",
 				description: "1 item description",
 				priority: 1,
-				isCompleted: false,
+				isCompleted: true,
 				createdDateUtc: "12:12:12 12/12/2012",
 				updatedDateUtc: "12:12:12 12/12/2012",
 			},
@@ -56,7 +61,7 @@ export default defineComponent({
 				name: "3 item",
 				description: null,
 				priority: 2,
-				isCompleted: false,
+				isCompleted: true,
 				createdDateUtc: "12:12:12 12/12/2012",
 				updatedDateUtc: "12:12:12 12/12/2012",
 			},
@@ -73,15 +78,6 @@ export default defineComponent({
 				id: 5,
 				name: "5 item",
 				description: "5 item description",
-				priority: 3,
-				isCompleted: false,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-			{
-				id: 6,
-				name: "6 item",
-				description: "6 item description",
 				priority: 3,
 				isCompleted: false,
 				createdDateUtc: "12:12:12 12/12/2012",
