@@ -30,65 +30,34 @@ import { defineComponent, ref } from "vue";
 import ToDoItems from "./components/ToDoItems.vue";
 import ToDoItem from "./types/ToDoItem";
 import OrderTerm from "./types/OrderTerm";
+import ApiResponse from "./types/ApiResponse";
 
 export default defineComponent({
 	name: "App",
 	components: {
 		ToDoItems,
 	},
+	data() {
+		return {
+			toDoList: [] as ToDoItem[],
+		};
+	},
 	setup() {
-		const toDoList = ref<ToDoItem[]>([
-			{
-				id: 1,
-				name: "1 item",
-				description: "1 item description",
-				priority: 1,
-				isCompleted: true,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-			{
-				id: 2,
-				name: "2 item",
-				description: "2 item description",
-				priority: 2,
-				isCompleted: false,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-			{
-				id: 3,
-				name: "3 item",
-				description: null,
-				priority: 2,
-				isCompleted: true,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-			{
-				id: 4,
-				name: "4 item",
-				description: "4 item description",
-				priority: 2,
-				isCompleted: false,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-			{
-				id: 5,
-				name: "5 item",
-				description: "5 item description",
-				priority: 3,
-				isCompleted: false,
-				createdDateUtc: "12:12:12 12/12/2012",
-				updatedDateUtc: "12:12:12 12/12/2012",
-			},
-		]);
 		const order = ref<OrderTerm>("id");
 		const handleClick = (term: OrderTerm) => {
 			order.value = term;
 		};
-		return { toDoList, handleClick, order };
+		return { handleClick, order };
+	},
+	mounted() {
+		fetch("http://api-todo-rmakowski.herokuapp.com/v1/ToDoItems", {
+			method: "GET",
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				const result = res as ApiResponse<ToDoItem[]>;
+				this.toDoList = result.data as ToDoItem[];
+			});
 	},
 });
 </script>
