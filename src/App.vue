@@ -50,7 +50,7 @@ export default defineComponent({
 		return { handleClick, order };
 	},
 	mounted() {
-		fetch("http://api-todo-rmakowski.herokuapp.com/v1/ToDoItems", {
+		fetch("https://api-todo-rmakowski.herokuapp.com/v1/ToDoItems", {
 			method: "GET",
 		})
 			.then((res) => res.json())
