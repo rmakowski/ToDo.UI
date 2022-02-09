@@ -39,11 +39,15 @@ header {
 	background: #161b22;
 }
 
-.add-button {
+.buttons {
 	display: flex;
 	justify-content: right;
 	align-items: right;
 	margin-bottom: 2em;
+}
+
+.button {
+	margin: 0 1em;
 }
 
 #app {

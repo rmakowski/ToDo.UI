@@ -6,10 +6,21 @@
 			<img alt="Check mark" src="./assets/check-mark.svg" class="svg" />
 		</h1>
 	</header>
-	<div class="row">
-		<div class="add-button">
-			<button type="button" class="btn btn-outline-secondary btn-lg">
+	<div class="row" v-if="loading">Loading</div>
+	<div class="row" v-else>
+		<div class="buttons">
+			<button
+				type="button"
+				class="btn btn-outline-secondary btn-lg button"
+			>
 				Add
+			</button>
+			<button
+				type="button"
+				class="btn btn-outline-secondary btn-lg button"
+				@click="this.resetData()"
+			>
+				Default data
 			</button>
 		</div>
 		<div class="col-sm-12 col-md-4 col-lg-4">
@@ -40,6 +51,7 @@ export default defineComponent({
 	data() {
 		return {
 			toDoList: [] as ToDoItem[],
+			loading: true as boolean,
 		};
 	},
 	setup() {
@@ -49,15 +61,37 @@ export default defineComponent({
 		};
 		return { handleClick, order };
 	},
-	mounted() {
-		fetch("https://api-todo-rmakowski.herokuapp.com/v1/ToDoItems", {
-			method: "GET",
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				const result = res as ApiResponse<ToDoItem[]>;
-				this.toDoList = result.data as ToDoItem[];
+	async mounted() {
+		await this.fetchData();
+	},
+	methods: {
+		async fetchData(): Promise<void> {
+			this.loading = true;
+			await fetch(
+				"https://api-todo-rmakowski.herokuapp.com/v1/ToDoItems",
+				{
+					method: "GET",
+				},
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					const result = res as ApiResponse<ToDoItem[]>;
+					this.toDoList = result.data as ToDoItem[];
+					this.loading = false;
+				});
+		},
+		async resetData(): Promise<void> {
+			this.loading = true;
+			await fetch(
+				"https://api-todo-rmakowski.herokuapp.com/v1/ToDoItems/reset",
+				{
+					method: "GET",
+				},
+			).then(() => {
+				this.loading = false;
 			});
+			await this.fetchData();
+		},
 	},
 });
 </script>
