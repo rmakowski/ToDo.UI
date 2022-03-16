@@ -1,4 +1,4 @@
-interface ToDoItem {
+interface GetToDoItemResponse {
 	id: number;
 	name: string;
 	description: string | null;
@@ -8,4 +8,4 @@ interface ToDoItem {
 	updatedDateUtc: string;
 }
 
-export default ToDoItem;
+export default GetToDoItemResponse;

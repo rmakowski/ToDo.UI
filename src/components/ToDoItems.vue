@@ -78,14 +78,14 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import ToDoItem from "@/types/ToDoItem";
 import OrderTerm from "@/types/OrderTerm";
+import GetToDoItemsResponse from "@/services/responses/GetToDoItemsResponse";
 
 export default defineComponent({
 	props: {
 		toDoItems: {
 			required: true,
-			type: Array as PropType<ToDoItem[]>,
+			type: Array as PropType<GetToDoItemsResponse[]>,
 		},
 		order: {
 			required: true,
@@ -103,7 +103,7 @@ export default defineComponent({
 					(item) =>
 						item.priority === props.priority && !item.isCompleted,
 				),
-			].sort((a: ToDoItem, b: ToDoItem) => {
+			].sort((a: GetToDoItemsResponse, b: GetToDoItemsResponse) => {
 				return a[props.order] > b[props.order] ? 1 : -1;
 			});
 		});
@@ -113,7 +113,7 @@ export default defineComponent({
 					(item) =>
 						item.priority === props.priority && item.isCompleted,
 				),
-			].sort((a: ToDoItem, b: ToDoItem) => {
+			].sort((a: GetToDoItemsResponse, b: GetToDoItemsResponse) => {
 				return a[props.order] > b[props.order] ? 1 : -1;
 			});
 		});

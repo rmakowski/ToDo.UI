@@ -9,13 +9,6 @@
 				>
 					Add
 				</button>
-				<button
-					type="button"
-					class="btn btn-outline-secondary btn-lg button"
-					@click="this.resetData()"
-				>
-					Default data
-				</button>
 			</div>
 			<div class="col-sm-12 col-md-4 col-lg-4">
 				<to-do-items
@@ -45,9 +38,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import ToDoItems from "@/components/ToDoItems.vue";
-import ToDoItem from "@/types/ToDoItem";
 import OrderTerm from "@/types/OrderTerm";
 import { ToDoItemsService } from "@/services/toDoItems.service";
+import GetToDoItemsResponse from "@/services/responses/GetToDoItemsResponse";
 
 export default defineComponent({
 	name: "Home",
@@ -56,9 +49,9 @@ export default defineComponent({
 	},
 	data() {
 		return {
-			toDoList: [] as ToDoItem[],
+			toDoList: [] as GetToDoItemsResponse[],
 			loading: true as boolean,
-			toDoItemsService: new ToDoItemsService()
+			toDoItemsService: new ToDoItemsService(),
 		};
 	},
 	setup() {
@@ -76,12 +69,6 @@ export default defineComponent({
 			this.loading = true;
 			this.toDoList = await this.toDoItemsService.GetToDoItems();
 			this.loading = false;
-		},
-		async resetData(): Promise<void> {
-			this.loading = true;
-			await this.toDoItemsService.ResetToDoItems();
-			this.loading = false;
-			await this.fetchData();
 		},
 	},
 });
