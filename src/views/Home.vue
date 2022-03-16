@@ -1,7 +1,6 @@
 <template>
 	<div class="home">
-		<div class="row" v-if="loading">Loading</div>
-		<div class="row" v-else>
+		<div class="row">
 			<div class="buttons">
 				<button
 					type="button"
@@ -66,9 +65,9 @@ export default defineComponent({
 	},
 	methods: {
 		async fetchData(): Promise<void> {
-			this.loading = true;
+			let loader = this.$loading.show();
 			this.toDoList = await this.toDoItemsService.GetToDoItems();
-			this.loading = false;
+			loader.hide();
 		},
 	},
 });
