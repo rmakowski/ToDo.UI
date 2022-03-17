@@ -26,6 +26,11 @@ header {
 	margin-bottom: 1em;
 }
 
+.login form {
+	padding: 3em;
+	background: #161b22;
+}
+
 .svg {
 	filter: invert(57%) sepia(1%) saturate(1913%) hue-rotate(173deg)
 		brightness(106%) contrast(101%);

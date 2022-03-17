@@ -6,7 +6,7 @@ import LoginUserResponse from "./responses/LoginUserResponse";
 export class UserService {
 	public async LoginUser(
 		loginUserRequest: LoginUserRequest,
-	): Promise<LoginUserResponse> {
+	): Promise<void> {
 		return await fetch(
 			`${process.env.VUE_APP_BACKEND_API_URL}/Users/login`,
 			{
@@ -19,11 +19,11 @@ export class UserService {
 		)
 			.then((response) => response.json())
 			.then((response) => {
-				const toDoItems = response as ApiResponse<LoginUserResponse>;
-				return toDoItems.data as LoginUserResponse;
+				const loginUserResponse = response as ApiResponse<LoginUserResponse>;
+				this.Login(loginUserResponse.data as LoginUserResponse);
 			})
 			.catch(() => {
-				return {} as LoginUserResponse;
+				// log error
 			});
 	}
 
@@ -42,15 +42,16 @@ export class UserService {
 		)
 			.then((response) => response.json())
 			.then((response) => {
-				const toDoItems = response as ApiResponse<boolean>;
-				return toDoItems.data as boolean;
+				const registerResponse = response as ApiResponse<boolean>;
+				return registerResponse.data as boolean;
 			})
 			.catch(() => {
+				// log error
 				return false;
 			});
 	}
 
-	public async LoginAsDemoUser(): Promise<LoginUserResponse> {
+	public async LoginAsDemoUser(): Promise<void> {
 		return await fetch(
 			`${process.env.VUE_APP_BACKEND_API_URL}/Users/loginAsDemo`,
 			{
@@ -62,11 +63,25 @@ export class UserService {
 		)
 			.then((response) => response.json())
 			.then((response) => {
-				const toDoItems = response as ApiResponse<LoginUserResponse>;
-				return toDoItems.data as LoginUserResponse;
+				const loginUserResponse = response as ApiResponse<LoginUserResponse>;
+				this.Login(loginUserResponse.data as LoginUserResponse);
 			})
 			.catch(() => {
-				return {} as LoginUserResponse;
+				// log error
 			});
+	}
+
+	public Login(loginUserResponse: LoginUserResponse): void {
+		localStorage.setItem("login", loginUserResponse.login);
+		localStorage.setItem("createdDate", loginUserResponse.createdDate);
+		localStorage.setItem("lastLoginDate", loginUserResponse.lastLoginDate);
+		localStorage.setItem("token", loginUserResponse.token);
+	}
+
+	public Logout(): void {
+		localStorage.removeItem("login");
+		localStorage.removeItem("createdDate");
+		localStorage.removeItem("lastLoginDate");
+		localStorage.removeItem("token");
 	}
 }

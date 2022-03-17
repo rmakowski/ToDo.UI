@@ -8,6 +8,13 @@
 				>
 					Add
 				</button>
+				<button
+					type="button"
+					class="btn btn-outline-secondary btn-lg button"
+					@click="this.LogoutUser()"
+				>
+					Logout
+				</button>
 			</div>
 			<div class="col-sm-12 col-md-4 col-lg-4">
 				<to-do-items
@@ -40,6 +47,7 @@ import ToDoItems from "@/components/ToDoItems.vue";
 import OrderTerm from "@/types/OrderTerm";
 import { ToDoItemsService } from "@/services/toDoItems.service";
 import GetToDoItemsResponse from "@/services/responses/GetToDoItemsResponse";
+import { UserService } from "@/services/user.service";
 
 export default defineComponent({
 	name: "Home",
@@ -51,6 +59,7 @@ export default defineComponent({
 			toDoList: [] as GetToDoItemsResponse[],
 			loading: true as boolean,
 			toDoItemsService: new ToDoItemsService(),
+			userService: new UserService(),
 		};
 	},
 	setup() {
@@ -61,13 +70,19 @@ export default defineComponent({
 		return { handleClick, order };
 	},
 	async mounted() {
-		await this.fetchData();
+		await this.FetchData();
 	},
 	methods: {
-		async fetchData(): Promise<void> {
+		async FetchData(): Promise<void> {
 			let loader = this.$loading.show();
 			this.toDoList = await this.toDoItemsService.GetToDoItems();
 			loader.hide();
+		},
+		LogoutUser(): void {
+			let loader = this.$loading.show();
+			this.userService.Logout();
+			loader.hide();
+			this.$router.push("/login");
 		},
 	},
 });

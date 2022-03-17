@@ -1,16 +1,18 @@
 import ApiResponse from "@/services/responses/ApiResponse";
+import AddToDoItemRequest from "./requests/AddToDoItemRequest";
+import UpdateToDoItemRequest from "./requests/UpdateToDoItemRequest";
 import GetToDoItemResponse from "./responses/GetToDoItemResponse";
 import GetToDoItemsResponse from "./responses/GetToDoItemsResponse";
-import UpdateToDoItemRequest from "./requests/UpdateToDoItemRequest";
-import AddToDoItemRequest from "./requests/AddToDoItemRequest";
 
 export class ToDoItemsService {
+	private authToken = `Bearer ${localStorage.getItem("token")}`;
+
 	public async GetToDoItems(): Promise<GetToDoItemsResponse[]> {
 		return await fetch(`${process.env.VUE_APP_BACKEND_API_URL}/ToDoItems`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": "",
+				"Authorization": this.authToken,
 			},
 		})
 			.then((response) => response.json())
@@ -32,7 +34,7 @@ export class ToDoItemsService {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": "",
+					"Authorization": this.authToken,
 				},
 			},
 		)
@@ -56,7 +58,7 @@ export class ToDoItemsService {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": "",
+					"Authorization": this.authToken,
 				},
 				body: JSON.stringify(updateToDoItemRequest),
 			},
@@ -78,7 +80,7 @@ export class ToDoItemsService {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": "",
+					"Authorization": this.authToken,
 				},
 			},
 		)
@@ -99,7 +101,7 @@ export class ToDoItemsService {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": "",
+				"Authorization": this.authToken,
 			},
 			body: JSON.stringify(addToDoItemRequest),
 		})
@@ -120,7 +122,7 @@ export class ToDoItemsService {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": "",
+					"Authorization": this.authToken,
 				},
 			},
 		)
