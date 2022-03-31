@@ -70,6 +70,9 @@ export default defineComponent({
 			userService: new UserService()
 		};
 	},
+	mounted() {
+		this.userService.Logout();
+	},
 	methods: {
 		async LoginUser(): Promise<void> {
 			let loader = this.$loading.show();

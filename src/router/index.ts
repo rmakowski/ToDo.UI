@@ -1,3 +1,4 @@
+import { JwtHelper } from "@/helpers/JwtHelper";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
@@ -27,14 +28,19 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-  const publicPages = ['/login', '/register'];
-  const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem("token");
-  if (authRequired && !loggedIn) {
-    next('/login');
-  } else {
-    next();
-  }
+	const publicPages = ["/login", "/register"];
+	const authRequired = !publicPages.includes(to.path);
+	const token = localStorage.getItem("token");
+	const jwtToken = new JwtHelper().decodeToken(token);
+	let isExpired = true;
+	if (jwtToken.exp) {
+		isExpired = Math.floor(Date.now() / 1000) > jwtToken.exp;
+	}
+	if (authRequired && !token && isExpired) {
+		next("/login");
+	} else {
+		next();
+	}
 });
 
 export default router;
