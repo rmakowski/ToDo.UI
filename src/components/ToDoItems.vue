@@ -8,7 +8,7 @@
 			<div v-if="orderedToDoItems.length == 0">Everything is done</div>
 			<div v-for="toDoItem in orderedToDoItems" :key="toDoItem.id" v-else>
 				<div class="row" style="margin: 16px 0">
-					<div class="col-1">
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 						<img
 							alt="Check mark"
 							src="../assets/check-mark.svg"
@@ -22,10 +22,10 @@
 							v-if="!toDoItem.isCompleted"
 						/>
 					</div>
-					<div class="col-8">
+					<div class="col-10 col-sm-10 col-md-7 col-lg-7">
 						{{ toDoItem.name }}
 					</div>
-					<div class="col-3">
+					<div class="col-12 col-sm-12 col-md-3 col-lg-3">
 						<button
 							type="button"
 							class="btn btn-outline-secondary btn-sm"
@@ -45,7 +45,7 @@
 				v-else
 			>
 				<div class="row" style="margin: 16px 0">
-					<div class="col-1">
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 						<img
 							alt="Check mark"
 							src="../assets/check-mark.svg"
@@ -59,10 +59,10 @@
 							v-if="!toDoItem.isCompleted"
 						/>
 					</div>
-					<div class="col-8">
+					<div class="col-10 col-sm-10 col-md-7 col-lg-7">
 						{{ toDoItem.name }}
 					</div>
-					<div class="col-3">
+					<div class="col-12 col-sm-12 col-md-3 col-lg-3">
 						<button
 							type="button"
 							class="btn btn-outline-secondary btn-sm"

@@ -61,4 +61,14 @@ header {
 	margin-top: 5%;
 	margin-left: 15%;
 	margin-right: 15%;
+	margin-bottom: 10%;
+}
+
+.todoitems {
+	margin-bottom: 2em;
+}
+
+.container-fluid {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
 }

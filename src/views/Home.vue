@@ -1,36 +1,50 @@
 <template>
 	<div class="home">
 		<div class="row">
-			<div class="buttons">
+			<div class="col-sm-6 col-md-6 col-lg-6">
 				<button
 					type="button"
 					class="btn btn-outline-secondary btn-lg button"
+					disabled
+					style="border: none;"
 				>
-					Add
-				</button>
-				<button
-					type="button"
-					class="btn btn-outline-secondary btn-lg button"
-					@click="this.LogoutUser()"
-				>
-					Logout
+					Welcome {{ login }}!
 				</button>
 			</div>
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<div class="buttons">
+					<button
+						type="button"
+						class="btn btn-outline-secondary btn-lg button"
+					>
+						Add
+					</button>
+					<button
+						type="button"
+						class="btn btn-outline-secondary btn-lg button"
+						@click="this.LogoutUser()"
+					>
+						Logout
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-6 col-lg-4">
 				<to-do-items
 					:toDoItems="toDoList"
 					:order="order"
 					:priority="1"
 				/>
 			</div>
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-12 col-sm-12 col-md-6 col-lg-4">
 				<to-do-items
 					:toDoItems="toDoList"
 					:order="order"
 					:priority="2"
 				/>
 			</div>
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-12 col-sm-12 col-md-6 col-lg-4">
 				<to-do-items
 					:toDoItems="toDoList"
 					:order="order"
@@ -60,6 +74,7 @@ export default defineComponent({
 			loading: true as boolean,
 			toDoItemsService: new ToDoItemsService(),
 			userService: new UserService(),
+			login: localStorage.getItem("login"),
 		};
 	},
 	setup() {
