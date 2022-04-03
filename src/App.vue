@@ -1,29 +1,21 @@
 <template>
 	<div class="container-fluid">
-		<header>
-			<h1>
-				<img
-					alt="Check mark"
-					src="./assets/check-mark.svg"
-					class="svg"
-				/>
-				ToDo list
-			</h1>
-		</header>
+		<custom-header />
 		<router-view />
-		<footer>©{{ year }} eDevCode Radosław Makowski</footer>
+		<custom-footer />
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import CustomFooter from "@/components/CustomFooter.vue";
+import CustomHeader from "@/components/CustomHeader.vue";
 
 export default defineComponent({
 	name: "App",
-	data() {
-		return {
-			year: 2022,
-		};
-	},
+	components: {
+		CustomFooter,
+		CustomHeader
+	}
 });
 </script>

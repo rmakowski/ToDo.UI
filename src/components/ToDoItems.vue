@@ -11,13 +11,13 @@
 					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 						<img
 							alt="Check mark"
-							src="../assets/check-mark.svg"
+							src="@/assets/check-mark.svg"
 							class="svg"
 							v-if="toDoItem.isCompleted"
 						/>
 						<img
 							alt="Check mark"
-							src="../assets/uncheck-mark.svg"
+							src="@/assets/uncheck-mark.svg"
 							class="svg"
 							v-if="!toDoItem.isCompleted"
 						/>
@@ -48,13 +48,13 @@
 					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 						<img
 							alt="Check mark"
-							src="../assets/check-mark.svg"
+							src="@/assets/check-mark.svg"
 							class="svg"
 							v-if="toDoItem.isCompleted"
 						/>
 						<img
 							alt="Check mark"
-							src="../assets/uncheck-mark.svg"
+							src="@/assets/uncheck-mark.svg"
 							class="svg"
 							v-if="!toDoItem.isCompleted"
 						/>
@@ -82,6 +82,7 @@ import OrderTerm from "@/types/OrderTerm";
 import GetToDoItemsResponse from "@/services/responses/GetToDoItemsResponse";
 
 export default defineComponent({
+	name: "ToDoItems",
 	props: {
 		toDoItems: {
 			required: true,
