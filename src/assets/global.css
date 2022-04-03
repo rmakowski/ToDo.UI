@@ -31,6 +31,10 @@ header {
 	background: #161b22;
 }
 
+.login button {
+	margin-bottom: 1em;
+}
+
 .svg {
 	filter: invert(57%) sepia(1%) saturate(1913%) hue-rotate(173deg)
 		brightness(106%) contrast(101%);

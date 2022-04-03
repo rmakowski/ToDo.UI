@@ -1,7 +1,7 @@
 <template>
 	<div class="login" style="text-align: center; margin-top: 4em">
 		<div class="row justify-content-md-center">
-			<form class="col-6" v-on:keyup.enter="this.LoginUser()">
+			<form class="col-12 col-sm-12 col-md-10 col-lg-8" v-on:keyup.enter="this.LoginUser()">
 				<h2>Please login to your account</h2>
 				<br />
 				<div class="form-outline mb-4">
