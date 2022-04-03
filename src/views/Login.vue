@@ -45,6 +45,7 @@
 						type="button"
 						class="btn btn-outline-danger"
 						@click="this.$router.push('/register')"
+						disabled
 					>
 						Register
 					</button>

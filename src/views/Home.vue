@@ -16,6 +16,7 @@
 					<button
 						type="button"
 						class="btn btn-outline-secondary btn-lg button"
+						disabled
 					>
 						Add
 					</button>
